@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Register Vehicles</h3>
+<form method="post" action="/register-vehicle">
+
+    <input required
+           type="text"
+           name="bg_reg_number"
+           placeholder="BG Reg. Number">
+    <input required
+           type="text"
+           name="manufacturer"
+           placeholder="Manufacturer">
+    <input required
+           type="text"
+           name="man_model"
+           placeholder="Model">
+
+{#TODO IMPLEMET THE SELECT FORM BELOW (PROBLEM WITH EXTRACTING THE DATA TO STRING)#}
+{#    <select name="fuel_type">#}
+{#            <option value="Gasoline" name="fuel_type">Gasoline</option>#}
+{#            <option value="Diesel" name="fuel_type">Diesel</option>#}
+{#            <option value="LPG" name="fuel_type">LPG</option>#}
+{#            <option value="Methane" name="fuel_type">Methane</option>#}
+{#            <option value="Electrical" name="fuel_type">Electrical</option>#}
+{#    </select>#}
+{#TODO CHANGE THE INPUT WITH DROPDOWN AS ABOVE#}
+    <input required
+           type="text"
+           name="fuel_type"
+           placeholder="Fuel Type">
+
+    <input required
+           type="number"
+           name="engine_vol"
+           min="0"
+           step="0.1"
+           placeholder="Engine (litres)">
+{#TODO IMPLEMENTATION OF DATEFIELD#}
+    <input required
+           type="text"
+           name="first_registration"
+           placeholder=" First Reg. DD.MM.YY">
+    <button>Register</button>
+    {% csrf_token %}
+</form>
+
+{#TODO IMPLEMENTATION OF SEARCH BUTTON WITH ACTION THAT SEARCHES IN ALL TABLES AND COLUMNS AND RETURNS INFORMATION IF ANY MATCHED#}
+
+{# TODO IMPLEMENTATION OF DELETE INPUT AND BUTTON -> THE INPUT MUST TAKES THE BG REG_NUMBER OF THE VEHICLE THAT IS NEEDED TO BE DELETED#}
+
+</body>
+</html>
+
