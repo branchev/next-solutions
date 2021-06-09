@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for obj in current_model %}
+    {% if searching_key in sobj.fuel_type.fuel_type|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% elif searching_key in obj.engine_vol|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% elif searching_key in obj.bg_reg_number.bg_reg_number|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% elif searching_key in obj.manufacturer_model.man_model|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% elif searching_key in obj.first_reg|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% elif searching_key in  obj.manufacturer.manufacturer|stringformat %}
+        <h2>
+            {{ obj.bg_reg_number.bg_reg_number }}
+        </h2>
+        <ul>{{ obj.manufacturer.manufacturer }}</ul>
+        <ul>{{ obj.manufacturer_model.man_model }}</ul>
+        <ul>{{ obj.first_reg }}</ul>
+        <ul>{{ obj.engine_vol }}</ul>
+        <ul>{{ obj.fuel_type }}</ul>
+    {% endif %}
+{% endfor %}
+
+
+</body>
+</html>

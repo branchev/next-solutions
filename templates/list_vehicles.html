@@ -10,8 +10,15 @@
 
 <h1>Vehicles: </h1>
 
-{% for car in vehicles %}
-    <h1>{{ car.bg_reg_number }}</h1>
+{% for mod in current_model %}
+    <h2>
+        {{ mod.bg_reg_number.bg_reg_number }}
+    </h2>
+        <ul>{{ mod.manufacturer.manufacturer }}</ul>
+        <ul>{{ mod.manufacturer_model.man_model }}</ul>
+        <ul>{{ mod.first_reg }}</ul>
+        <ul>{{ mod.engine_vol }}</ul>
+        <ul>{{ mod.fuel_type }}</ul>
 {% endfor %}
 
 

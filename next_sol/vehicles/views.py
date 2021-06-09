@@ -53,7 +53,8 @@ def register_vehicle(request):
         first_reg=date_first_registration,
         bg_reg_number=new_reg,
         manufacturer=new_manufacturer,
-        manufacturer_model=new_manufacturer_model
+        manufacturer_model=new_manufacturer_model,
+        fuel_type=new_fuel_type,
     )
     new_current_vehicle_data.save()
 
@@ -62,11 +63,29 @@ def register_vehicle(request):
 
 def list_vehicles(request):
     context = {
-        "vehicles": BGRegNumber.objects.all(),
-        "models": ManufacturerModel.objects.all(),
-        "manufacturers": Manufacturer.objects.all(),
-
-        # "current_manufacturer": lambda x: Manufacturer.objects.filter(id=x).first(),
-
+        'current_model': CurrentVehicleData.objects.all(),
+        'bg_regs': BGRegNumber.objects.all(),
+        'fuel_type': FuelType.objects.all(),
+        'manufacturer': Manufacturer.objects.all(),
+        'man_model': ManufacturerModel.objects.all(),
     }
+
     return render(request, 'list_vehicles.html', context)
+
+
+def search_vehicles(request):
+    key_word = request.POST['key_word']
+
+    context = {
+        # 'vehicles': [],
+        'current_model': CurrentVehicleData.objects.all(),
+        'bg_regs': BGRegNumber.objects.all(),
+        'fuel_type': FuelType.objects.all(),
+        'manufacturer': Manufacturer.objects.all(),
+        'man_model': ManufacturerModel.objects.all(),
+
+        'searching_key': key_word
+    }
+
+
+    return render(request, 'search.html', context)
