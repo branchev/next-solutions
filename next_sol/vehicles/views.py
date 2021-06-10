@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
 
+from next_sol.vehicles.forms import RegisterForm, DateInputForm, SearchForm, DeleteForm
 from next_sol.vehicles.models import BGRegNumber, ManufacturerModel, Manufacturer, CurrentVehicleData, FuelType
 
 
 def index(request):
-    return render(request, 'index.html')
+    context = {
+        'register_form': RegisterForm(),
+        'date_input_form': DateInputForm(),
+        'search_form': SearchForm(),
+        'delete_form': DeleteForm(),
+    }
+    return render(request, 'index.html', context)
 
 
 def register_vehicle(request):
@@ -74,18 +81,25 @@ def list_vehicles(request):
 
 
 def search_vehicles(request):
-    key_word = request.POST['key_word']
+    key_word = request.POST['key']
 
     context = {
-        # 'vehicles': [],
         'current_model': CurrentVehicleData.objects.all(),
         'bg_regs': BGRegNumber.objects.all(),
         'fuel_type': FuelType.objects.all(),
         'manufacturer': Manufacturer.objects.all(),
         'man_model': ManufacturerModel.objects.all(),
-
-        'searching_key': key_word
     }
 
-
     return render(request, 'search.html', context)
+
+
+def delete_vehicle(request):
+    reg_number = request.POST['bg_reg_number']
+
+    searched_reg = BGRegNumber.objects. \
+        filter(bg_reg_number=reg_number). \
+        first()
+    if searched_reg:
+        searched_reg.delete()
+    return redirect('/')
