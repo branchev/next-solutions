@@ -81,7 +81,26 @@ def list_vehicles(request):
 
 
 def search_vehicles(request):
+    # TODO CONVERT ALL DIGITS AND LETTERS TO UPPER OR LOWER CASE FOR SEARCHING
     key_word = request.POST['key']
+
+    regs = set([reg for reg in BGRegNumber.objects.all() if key_word in reg.bg_reg_number])
+    manufacturers = set([m for m in Manufacturer.objects.all() if key_word in m.manufacturer])
+    m_models = set([mod for mod in ManufacturerModel.objects.all() if key_word in mod.man_model])
+
+    results = []
+
+    for car in CurrentVehicleData.objects.all():
+        if car.bg_reg_number in regs:
+            results.append(car)
+        elif car.manufacturer in manufacturers:
+            results.append(car)
+        elif car.manufacturer_model in m_models:
+            results.append(car)
+        elif key_word in str(CurrentVehicleData.engine_vol):
+            results.append(car)
+        elif key_word in str(CurrentVehicleData.first_reg):
+            results.append(car)
 
     context = {
         'current_model': CurrentVehicleData.objects.all(),
@@ -89,6 +108,8 @@ def search_vehicles(request):
         'fuel_type': FuelType.objects.all(),
         'manufacturer': Manufacturer.objects.all(),
         'man_model': ManufacturerModel.objects.all(),
+
+        'result': results,
     }
 
     return render(request, 'search.html', context)
